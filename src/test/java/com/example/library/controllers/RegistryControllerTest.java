@@ -61,6 +61,17 @@ class RegistryControllerTest {
 //                .andExpect(model().attribute("registry", hasProperty("tombstone", is("false"))));
 //    }
 
+    // No value at JSON path "$.registry"
+    @Test
+    void getAllRegistries() throws Exception {
+        mvc.perform( MockMvcRequestBuilders
+                .get("/api/v1/registry")
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.registry").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("$î.registry[*].registryId").isNotEmpty());
+    }
 
     @Test
     void returnBook() throws Exception{
