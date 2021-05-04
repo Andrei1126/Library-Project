@@ -36,7 +36,7 @@ class RegistryControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.registry").exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("$î.registry[*].registryId").isNotEmpty());
+                .andExpect(MockMvcResultMatchers.jsonPath("$.registry[*].registryId").isNotEmpty());
     }
 
     @Test
