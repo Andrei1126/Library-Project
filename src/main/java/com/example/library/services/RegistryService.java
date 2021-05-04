@@ -40,7 +40,7 @@ public class RegistryService {
     public Optional<Registry> getRegistryById(Integer id) {
         if (!registryRepo.findById(id).get().isTombstone())
             return registryRepo.findById(id);
-        return null;
+        return Optional.empty();
     }
 
     public void updateEntryInRegistry(Integer id, String startPeriod) {
@@ -52,7 +52,7 @@ public class RegistryService {
         LocalDate actualDate = LocalDate.now();
         LocalDate bookDate = LocalDate.parse(start, DateTimeFormatter.ISO_LOCAL_DATE);
         long periodBetween = Duration.between(bookDate.atStartOfDay(), actualDate.atStartOfDay()).toDays();
-        Double penaltyPrice = 0.0;
+        double penaltyPrice = 0.0;
 
         if (periodBetween > 14 && (!registryRepo.find(id, start).isTombstone())) {
             penaltyPrice = book.getPrice() * (periodBetween - 14) * 0.01;

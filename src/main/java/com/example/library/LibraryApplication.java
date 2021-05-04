@@ -36,10 +36,12 @@ public class LibraryApplication {
         Registry reg2 = new Registry(5, book2, "2021-04-22", false);
         Registry reg3 = new Registry(6, book1, "2021-04-21", false);
         Registry reg4 = new Registry(7, book1, "2021-03-21", false);
+        Registry reg5 = new Registry(8, book1, "2021-03-20", true);
         registryRepo.save(reg1);
         registryRepo.save(reg2);
         registryRepo.save(reg3);
         registryRepo.save(reg4);
+        registryRepo.save(reg5);
 
     }
 
